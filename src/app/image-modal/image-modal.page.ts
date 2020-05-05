@@ -9,8 +9,8 @@ import { NavParams, ModalController, IonSlides } from '@ionic/angular';
 export class ImageModalPage implements OnInit {
 
   img: any;
-  @ViewChild('slider', { read: ElementRef, static: false })
-  slider: ElementRef;
+  @ViewChild('slider', {static: true })
+  protected slider: IonSlides;
 
   sliderOpts: {
     centeredSlides: true,
@@ -20,21 +20,28 @@ export class ImageModalPage implements OnInit {
   }
   constructor(private navParams: NavParams, private modalController: ModalController) { }
 
-  ngOnInit() {
+  myzoom: any;
+
+  async ngOnInit() {
     this.img = this.navParams.get('img');
+    const swiper = await this.slider.getSwiper();
+    swiper.appendSlide(`<ion-slide><img src="${this.img}" (error)="(onError($event))"/></ion-slide>`)
+    this.myzoom = swiper.zoom;
   }
+
   zoom(zoomIn: boolean) {
-    let zoom = this.slider.nativeElement.swiper.zoom;
 
     if (zoomIn) {
-      zoom.in();
+      this.myzoom.in();
     }
     else {
-      zoom.out();
+      this.myzoom.out();
     }
   }
 
   close() {
     this.modalController.dismiss();
   }
+
+
 }
