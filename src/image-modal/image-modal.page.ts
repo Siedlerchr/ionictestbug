@@ -9,7 +9,7 @@ import { NavParams, ModalController, IonSlides } from '@ionic/angular';
 export class ImageModalPage implements OnInit {
 
   img: any;
-  @ViewChild('slider', { read: ElementRef })
+  @ViewChild('slider', { read: ElementRef, static: false })
   slider: ElementRef;
 
   sliderOpts: {
