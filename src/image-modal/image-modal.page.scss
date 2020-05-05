@@ -1,0 +1,18 @@
+ion-content {
+    // --background: rgba(44, 39, 45, 0.84);
+    --background: var(--ion-color-dark-tint);
+}
+
+ion-slides {
+    height: calc(100% - 88px);
+}
+
+#zoom-buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+#close-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
